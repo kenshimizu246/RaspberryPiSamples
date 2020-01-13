@@ -8,3 +8,7 @@
 	GND -> 0V
 	Vcc -> 3.3V
 
+3. command line
+	gcc PCA9685.c -l wiringPi -o servo
+
+
