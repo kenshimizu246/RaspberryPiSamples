@@ -1,0 +1,10 @@
+
+
+1. Menu -> Preferences -> Raspberry Pi Configuration -> Interfaces -> I2C -> Enable
+
+2. Wiring
+	SCL -> BCM 3 (wPi 9) Mode ALT0
+	SDA -> BCM 2 (wPi 8) Mode ALT0
+	GND -> 0V
+	Vcc -> 3.3V
+
