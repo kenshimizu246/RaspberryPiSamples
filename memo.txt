@@ -1,0 +1,27 @@
+
+
+1. create blanch a01 and checkout to a01
+# git checkout -b a01
+# vi PCA9685.txt 
+
+2. add and commit change.
+# git commit -a -m "add compile example"
+
+3. checkout master
+# git checkout master
+
+4. merge a01 to master
+# git merge a01
+
+5. list branch
+# git branch
+
+6. delete a01
+# git branch -d a01
+
+
+
+
+
+
+
