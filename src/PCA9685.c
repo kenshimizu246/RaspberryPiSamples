@@ -32,7 +32,7 @@ int baseReg(int pin)
 	return (pin >= PIN_ALL ? LEDALL_ON_L : LED0_ON_L + 4 * pin);
 }
 
-void PWMFreq(int fd, float freq){
+void PwmFreq(int fd, float freq){
 	// Cap at min 40 and max 1000
 	freq = (freq > 1000 ? 1000 : (freq < 40 ? 40 : freq));
 
@@ -53,18 +53,8 @@ void PWMFreq(int fd, float freq){
 	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, restart);
 }
 
-void FullOff(int fd, int pin, int tf){
-	int reg = baseReg(pin) + 3;	     // LEDX_OFF_H
-	int state = wiringPiI2CReadReg8(fd, reg);
 
-	// Set bit 4 to 1 or 0 accordingly
-	state = tf ? (state | 0x10) : (state & 0xEF);
-
-	wiringPiI2CWriteReg8(fd, reg, state);
-}
-
-
-void Setup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
+void PwmSetup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
 	// Check i2c address
 	int fd = wiringPiI2CSetup(i2cAddress);
 	if (fd < 0){
@@ -94,23 +84,23 @@ void Setup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
 
 	// Set frequency of PWM signals. Also ends sleep mode and starts PWM output.
 	if (freq > 0)
-		PWMFreq(fd, freq);
+		PwmFreq(fd, freq);
 }
 
-void PWMReset(int fd){
+void PwmReset(int fd){
 	wiringPiI2CWriteReg16(fd, LEDALL_ON_L    , 0x0);
 	wiringPiI2CWriteReg16(fd, LEDALL_ON_L + 2, 0x1000);
 	// ON_L + 2 -> OFF_L
 }
 
-void PWMWrite(int fd, int pin, int on, int off){
+void PwmWrite(int fd, int pin, int on, int off){
 	int reg = baseReg(pin);
 
 	wiringPiI2CWriteReg16(fd, reg    , on  & 0x0FFF);
 	wiringPiI2CWriteReg16(fd, reg + 2, off & 0x0FFF);
 }
 
-void PWMRead(int fd, int pin, int *on, int *off){
+void PwmRead(int fd, int pin, int *on, int *off){
 	int reg = baseReg(pin);
 
 	if (on)
@@ -119,7 +109,17 @@ void PWMRead(int fd, int pin, int *on, int *off){
 		*off = wiringPiI2CReadReg16(fd, reg + 2);
 }
 
-void FullOn(int fd, int pin, int tf){
+void PwmFullOff(int fd, int pin, int tf){
+	int reg = baseReg(pin) + 3;	     // LEDX_OFF_H
+	int state = wiringPiI2CReadReg8(fd, reg);
+
+	// Set bit 4 to 1 or 0 accordingly
+	state = tf ? (state | 0x10) : (state & 0xEF);
+
+	wiringPiI2CWriteReg8(fd, reg, state);
+}
+
+void PwmFullOn(int fd, int pin, int tf){
 	int reg = baseReg(pin) + 1;	     // LEDX_ON_H
 	int state = wiringPiI2CReadReg8(fd, reg);
 
@@ -130,11 +130,13 @@ void FullOn(int fd, int pin, int tf){
 
 	// For simplicity, we set full-off to 0 because it has priority over full-on
 	if (tf)
-		FullOff(fd, pin, 0);
+		PwmFullOff(fd, pin, 0);
 }
 
 int main(int argc, char *argv[])
 {
 	printf("PCA9685\n");
 	wiringPiSetupGpio();
+
+	
 }
