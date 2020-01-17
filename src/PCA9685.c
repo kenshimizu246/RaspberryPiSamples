@@ -54,7 +54,7 @@ void PwmFreq(int fd, float freq){
 }
 
 
-void PwmSetup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
+int PwmSetup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
 	// Check i2c address
 	int fd = wiringPiI2CSetup(i2cAddress);
 	if (fd < 0){
@@ -85,6 +85,7 @@ void PwmSetup(const int i2cAddress/* = 0x40*/, float freq/* = 50*/){
 	// Set frequency of PWM signals. Also ends sleep mode and starts PWM output.
 	if (freq > 0)
 		PwmFreq(fd, freq);
+	return fd;
 }
 
 void PwmReset(int fd){
@@ -133,10 +134,74 @@ void PwmFullOn(int fd, int pin, int tf){
 		PwmFullOff(fd, pin, 0);
 }
 
+//int main(int argc, char *argv[])
+//{
+//	printf("PCA9685\n");
+//	wiringPiSetupGpio();
+//
+//	int reg = baseReg(pin);
+//
+//	wiringPiI2CWriteReg16(fd, reg    , on  & 0x0FFF);
+//	wiringPiI2CWriteReg16(fd, reg + 2, off & 0x0FFF);
+//}
+
+
+//void PwmFullOff(int fd, int pin, int tf){
+//	int reg = baseReg(pin) + 3;	     // LEDX_OFF_H
+//	int state = wiringPiI2CReadReg8(fd, reg);
+//
+//	// Set bit 4 to 1 or 0 accordingly
+//	state = tf ? (state | 0x10) : (state & 0xEF);
+//
+//	wiringPiI2CWriteReg8(fd, reg, state);
+//}
+
+//void PwmFullOn(int fd, int pin, int tf){
+//	int reg = baseReg(pin) + 1;	     // LEDX_ON_H
+//	int state = wiringPiI2CReadReg8(fd, reg);
+//
+//	// Set bit 4 to 1 or 0 accordingly
+//	state = tf ? (state | 0x10) : (state & 0xEF);
+//
+//	wiringPiI2CWriteReg8(fd, reg, state);
+//
+//	// For simplicity, we set full-off to 0 because it has priority over full-on
+//	if (tf)
+//		PwmFullOff(fd, pin, 0);
+//}
+
 int main(int argc, char *argv[])
 {
 	printf("PCA9685\n");
 	wiringPiSetupGpio();
 
-	
+	int fd = PwmSetup(0x40, 50);
+	PwmReset(fd);
+
+	int pin, tick;
+
+	while(true){
+		printf("pin?");
+		scanf("%d", &pin);
+
+		if(pin < 0 || 16 < pin){
+			printf("pin must be from 0 to 16!\n%d is out of range!\n");
+			break;
+		}
+
+		printf("tick?");
+		scanf("%d", &tick);
+
+		printf("your pin and tick is %d and %d\n", pin, tick);
+		PwmWrite(fd, pin, 0, tick);
+	}
+
+
+
+//	int a[] = {250, 450, 700};
+//	for(int i = 0; i < 100; i++){
+//		PwmWrite(fd, 2, 0, a[i % 3]);
+//		sleep(1);
+//	}
 }
+	
