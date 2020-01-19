@@ -1,0 +1,8 @@
+
+https://learn.adafruit.com/adafruit-arduino-lesson-16-stepper-motors/overview
+
+https://www.hiramine.com/physicalcomputing/arduino/steppingmotordriver.html
+
+https://goji2100.com/blog/?p=1066
+
+
