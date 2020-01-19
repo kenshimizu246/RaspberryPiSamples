@@ -1,8 +1,27 @@
 
+https://linustechtips.com/main/topic/1043298-raspberry-pi-c-stepper-motor/
+
+
+
 https://learn.adafruit.com/adafruit-arduino-lesson-16-stepper-motors/overview
 
 https://www.hiramine.com/physicalcomputing/arduino/steppingmotordriver.html
 
 https://goji2100.com/blog/?p=1066
+
+wiringPi stepper
+https://github.com/nkolban/node-stepper-wiringpi
+https://www.npmjs.com/package/stepper-wiringpi
+
+https://crish4cks.net/a-simple-c-library-to-drive-a-stepper-motor-using-the-raspberry-pi/
+http://pongsuke.hatenablog.com/entry/2016/09/21/120205
+
+https://www.denshi.club/pc/motor/1-5.html
+
+
+
+
+
+
 
 
