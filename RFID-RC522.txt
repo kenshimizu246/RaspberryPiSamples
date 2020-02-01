@@ -1,0 +1,8 @@
+
+
+http://www.neko.ne.jp/~freewing/raspberry_pi/raspberry_pi_3_spi_nfc_rfid_rc522/
+
+https://qiita.com/narista/items/eb8c1ddd7c3b1da3e571
+Kernel build reference
+
+
