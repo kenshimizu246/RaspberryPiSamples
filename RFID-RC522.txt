@@ -1,6 +1,7 @@
 
 
 http://www.neko.ne.jp/~freewing/raspberry_pi/raspberry_pi_3_spi_nfc_rfid_rc522/
+https://pimylifeup.com/raspberry-pi-rfid-rc522/
 
 
 Kernel build reference
