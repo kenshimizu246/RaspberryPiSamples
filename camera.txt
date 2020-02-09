@@ -1,4 +1,52 @@
 
+1. Open Raspberry Pi Configuration
+   Menu -> Preferences -> Raspberry Pi Configuration
+
+2. Select Interfaces tab and select Camera Enable.
+
+3. Check whether Camera is enabled or not.
+   $ vcgencmd get_camera
+   supported=1 detected=1
+
+4. If "detected=0", then update and upgrade
+   $ sudo apt-get update
+   $ sudo apt-get upgrade
+
+5. Test
+   $ sudo raspistill -o image.jpg
+   $ gpicview image.jpg
+   $ sudo raspivid -o video.h264 -t 5000
+   $ omxplayer ./video.h264
+
+
+Live Camera:
+6. install motion
+   $ sudo apt-get install motion
+
+7. config motion
+   $ sudo vi /etc/motion/motion.conf
+
+8. change following properties.a
+   daemon off -> daemon on
+   ffmpeg_output_movies on -> ffmpeg_output_movies off
+   stream_localhost on -> stream_localhost off
+
+9. change config /etc/default/motion
+   start_motion_daemon=yes
+
+10. enalbe motion as daemon
+   $ sudo systemctl enable motion
+
+
+- convert to MP4
+$ sudo apt install -y gpac
+$ MP4Box -add video.h264 video.mp4
+
+- watch live camera
+$ mplayer tv:// -tv driver=v4l2
+
+
+references:
 
 https://www.pc-koubou.jp/magazine/17276
 
@@ -9,5 +57,6 @@ https://codezine.jp/article/detail/11183
 http://denshikousaku.net/raspberry-pi-camera-module-web-camera-streaming
 
 https://tutorials-raspberrypi.com/raspberry-pi-security-camera-livestream-setup/
+
 
 
