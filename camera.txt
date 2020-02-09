@@ -17,7 +17,8 @@
    $ gpicview image.jpg
    $ sudo raspivid -o video.h264 -t 5000
    $ omxplayer ./video.h264
-
+   $ v4l2-ctl -d /dev/video0 --list-formats
+   $ mplayer tv:// -tv driver=v4l2
 
 Live Camera:
 6. install motion
