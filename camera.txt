@@ -59,4 +59,417 @@ http://denshikousaku.net/raspberry-pi-camera-module-web-camera-streaming
 https://tutorials-raspberrypi.com/raspberry-pi-security-camera-livestream-setup/
 
 
+notes:
+sudo apt-get install mplayer
 
+
+    1  cd project
+    2  git clone git@github.com:kenshimizu246/RaspServer.git
+    3  cd ..
+    4  ls -rtl
+    5  mkdir .ssh
+    6  cd .ssh
+    7  ls
+    8  ls -al
+    9  ifconfig
+   10  mkdir project
+   11  cd project
+   12  top
+   13  ifconfig
+   14  cd project/
+   15  cd ..
+   16  cd .ssh
+   17  ls -al
+   18  cd ..
+   19  cd project/
+   20  ls
+   21  git clone git@github.com:kenshimizu246/RaspServer.git
+   22  git clone git@github.com:kenshimizu246/RaspberryPiSamples.git
+   23  git clone git@github.com:kenshimizu246/ReadMax31855.git
+   24  ls -al
+   25  ls ReadMax31855/
+   26  ls
+   27  cd RaspberryPiSamples/
+   28  ls
+   29  ls -al
+   30  ls
+   31  top
+   32  cd project/RaspServer/
+   33  ls
+   34  cd src
+   35  ls
+   36  cd ..
+   37  ls
+   38  cd conf/
+   39  ls
+   40  cd ../
+   41  less README.md 
+   42  cd src
+   43  ls
+   44  cd actions/
+   45  ls
+   46  less PCA9685Action.
+   47  less PCA9685Action.cpp 
+   48  sudo i2cdetect -y 1
+   49  less PCA9685Action.hpp
+   50  less PCA9685Action.cpp 
+   51  cd
+   52  cd project/
+   53  ls
+   54  cd RaspberryPiSamples/
+   55  ls
+   56  cd src
+   57  mkdir src
+   58  cd src
+   59  ls
+   60  vi PCA9685.c
+   61  gcc PCA9685.c -l wiringPi servo
+   62  gcc PCA9685.c -l wiringPi -o servo
+   63  ./servo 
+   64  vi PCA9685.c
+   65  gcc PCA9685.c -l wiringPi -o servo
+   66  vi PCA9685.c
+   67  gcc PCA9685.c -l wiringPi -o servo
+   68  ./servo 
+   69  vi PCA9685.c
+   70  gcc PCA9685.c -l wiringPi -o servo
+   71  ./servo 
+   72  vi PCA9685.c
+   73  gcc PCA9685.c -l wiringPi -o servo
+   74  vi PCA9685.c
+   75  gcc PCA9685.c -l wiringPi -o servo
+   76  vi PCA9685.c
+   77  ./servo 
+   78  vi PCA9685.c
+   79  gcc PCA9685.c -l wiringPi -o servo
+   80  vi PCA9685.c
+   81  gcc PCA9685.c -l wiringPi -o servo
+   82  ./servo 
+   83  vi PCA9685.c
+   84  gcc PCA9685.c -l wiringPi -o servo
+   85  vi PCA9685.c
+   86  gcc PCA9685.c -l wiringPi -o servo
+   87  vi PCA9685.c
+   88  gcc PCA9685.c -l wiringPi -o servo
+   89  ./servo 
+   90  vi PCA9685.c
+   91  gcc PCA9685.c -l wiringPi -o servo
+   92  ./servo 
+   93  vi PCA9685.c
+   94  gcc PCA9685.c -l wiringPi -o servo
+   95  ./servo 
+   96  vi PCA9685.c
+   97  gcc PCA9685.c -l wiringPi -o servo
+   98  ./servo 
+   99  vi PCA9685.c
+  100  gcc PCA9685.c -l wiringPi -o servo
+  101  ./servo 
+  102  vi PCA9685.c
+  103  gcc PCA9685.c -l wiringPi -o servo
+  104  ./servo 
+  105  gcc PCA9685.c -l wiringPi -o servo
+  106  ./servo 
+  107  vi PCA9685.c
+  108  gpio load i2c
+  109  sudo gpio load i2c
+  110  sudo raspi-config
+  111  sudo gpio load i2c
+  112  gpio write 25 0
+  113  gpio 25 write 0
+  114  gpio write 26 0
+  115  gpio readall
+  116  gpio write 25 1
+  117  gpio write 25 0
+  118  gpio write 25 1
+  119  gpio mode 24 out
+  120  gpio write 24 1
+  121  cd project/RaspberryPiSamples/
+  122  ls
+  123  vi servo.txt
+  124  gpio mode 26 out
+  125  gpio write 26 1
+  126  gpio mode 25 out
+  127  gpio write 25 1
+  128  gpio write 25 0
+  129  sudo vi /boot/config.txt 
+  130  cd project/RaspServer/
+  131  cd src
+  132  ls
+  133  vi PCA9685.cpp 
+  134  vi PCA9685.hpp 
+  135  vi PCA9685.cpp 
+  136  gpio readall
+  137  ls
+  138  cd project/
+  139  ls
+  140  cd ReadMax31855/src/
+  141  ls
+  142  cd ..
+  143  git pull
+  144  cd src
+  145  ls
+  146  vi motor.c 
+  147  cd ../../RaspServer/
+  148  ls
+  149  cd src
+  150  cd actions/
+  151  ls
+  152  vi PCA9685Action.cpp 
+  153  cd project/RaspberryPiSamples/src
+  154  ls
+  155  ./servo 
+  156  vi servo_test.py
+  157  chmod a+x servo_test.py 
+  158  which python
+  159  python -v
+  160  python servo_test.py 
+  161  vi /boot/config.txt 
+  162  sudo vi /boot/config.txt 
+  163  cd project/
+  164  ls
+  165  cd RaspberryPiSamples/
+  166  ls
+  167  vi servo.txt 
+  168  gpio readall
+  169  cd project/RaspberryPiSamples/
+  170  ls
+  171  cd src/
+  172  ls
+  173  ./servo
+  174  cd ..
+  175  mkdir work
+  176  cd work/
+  177  ls
+  178  git clone https://github.com/adafruit/Adafruit_Python_PCA9685.git
+  179  git clone https://github.com/adafruit/Adafruit_Python_GPIO.git
+  180  git clone https://github.com/adafruit/Adafruit_Python_PureIO.git
+  181  cd Adafruit_Python_PCA9685/
+  182  sudo python setup.py install
+  183  which python
+  184  ls -al /usr/bin/python
+  185  sudo python3 setup.py install
+  186  sudo mv /usr/bin/python /tmp
+  187  sudo ln -s /usr/bin/python3 /usr/bin/python
+  188  cd ../Adafruit_Python_GPIO/
+  189  sudo python setup.py install
+  190  cd ../Adafruit_Python_PureIO/
+  191  sudo python setup.py install
+  192  cd ..
+  193  ls
+  194  vi simple.py
+  195  python simple.py 
+  196  vi simple.py
+  197  python simple.py 
+  198  vi simple.py 
+  199  python simple.py 
+  200  vi simple.py 
+  201  python simple.py 
+  202  python2 simple.py 
+  203  vi simple.py 
+  204  python simple.py 
+  205  cat simple.py 
+  206  python simple.py 
+  207  cd ../src/
+  208  ./servo
+  209  ls -rtl
+  210  python servo_test.py 
+  211  vi servo_test.py 
+  212  python2 servo_test.py 
+  213  sudo vi /boot/config.txt 
+  214  cd project/
+  215  ls
+  216  cd RaspberryPiSamples/
+  217  ls
+  218  cd src
+  219  ./servo
+  220  ls
+  221  vi PCA9685.c 
+  222  cd ..
+  223  ls
+  224  git status
+  225  git add servo.txt src src/PCA9685.c 
+  226  git commit -m "initial PCA9685.c"
+  227  git config --global user.email "kenshimizu@earthlink.net"
+  228  git config --global user.name "Ken Shimizu"
+  229  git commit -m "initial PCA9685.c"
+  230  git del src/servo_test.py
+  231  git reset --hard HEAD^
+  232  git status
+  233  ls
+  234  ls -al
+  235  git log
+  236  ls work/
+  237  git fsck --full
+  238  mkdir src
+  239  git add src
+  240  git commit -m "add src directory"
+  241  git push 
+  242  cd src
+  243  ls
+  244  vi PCA9685.c 
+  245  cd ..
+  246  git add src/PCA9685.c 
+  247  git status
+  248  git commit -m "initial src/PCA9685.c"
+  249  git push
+  250  ls
+  251  cd ..
+  252  cd RaspberryPiSamples/
+  253  ls
+  254  cd work
+  255  ls
+  256  cd ..
+  257  cd work/
+  258  python simple.py 
+  259  cd ..
+  260  ls
+  261  ls src
+  262  vi PCA9685.txt
+  263  git add PCA9685.txt 
+  264  git commit -m "add initial setup"
+  265  git push
+  266  git checkout -b a01
+  267  vi PCA9685.txt 
+  268  git commit -a -m "add compile example"
+  269  git merge a01
+  270  git checkout master
+  271  git merge a01
+  272  history
+  273  vi memo.txt
+  274  git branch
+  275  git branch -d a01
+  276  git branch
+  277  vi memo.txt 
+  278  git add memo.txtt
+  279  git add memo.txt
+  280  git commit -m "how to use git"
+  281  git push
+  282  cd project/RaspServer/
+  283  ls
+  284  cd src/
+  285  ls
+  286  cp PCA9685.cpp ../../RaspberryPiSamples/src/PCA9685.c
+  287  ls
+  288  cd ../../ReadMax31855/src/
+  289  ls
+  290  vi motor.c 
+  291  cp ~/project/RaspServer/src/PCA9685.cpp ../../RaspberryPiSamples/src/PCA9685.c
+  292  vi motor.c 
+  293  cd ../../RaspberryPiSamples/src/
+  294  gcc PCA9685.c -l wiringPi 
+  295  clear
+  296  gcc PCA9685.c -l wiringPi 
+  297  clear
+  298  gcc PCA9685.c -l wiringPi 
+  299  gpio readall
+  300  cd project/RaspberryPiSamples/src
+  301  ls
+  302  vi PCA9685.c 
+  303  ls
+  304  git add DRV8835.c
+  305  git commit DRV8835.c 
+  306  vcgencmd get_camera
+  307  sudo raspistill -o image.jpg
+  308  sudo apt-get install motion
+  309  sudo raspistill -o image.jpg
+  310  cp /etc/motion/motion.conf /etc/motion/motion.conf.org
+  311  sudo cp /etc/motion/motion.conf /etc/motion/motion.conf.org
+  312  vi /etc/motion/motion.conf
+  313  sudo vi /etc/motion/motion.conf
+  314  systemctl -l
+  315  sudo reboot
+  316  cd project/
+  317  ls
+  318  cd RaspberryPiSamples/
+  319  ls
+  320  cd src/
+  321  ls
+  322  ./servo 
+  323  ps -ef | grep motion
+  324  sudo systemctl status motion
+  325  sudo systemctl  help
+  326  sudo systemctl  --help
+  327  sudo systemctl start motion
+  328  ps -ef | grep motion
+  329  sudo systemctl status motion
+  330  sudo vi /etc/default/motion
+  331  ps -ef | grep motion
+  332  sudo kill 1602
+  333  sudo motion
+  334  ps -ef | grep motion
+  335  sudo kill 1640
+  336  sudo motion
+  337  sudo service motion start
+  338  systemctl stop motion
+  339  sudo systemctl stop motion
+  340  sudo systemctl status motion
+  341  less /etc/init.d/motion 
+  342  less /etc/default/motion 
+  343  systemctl is-enabled motion
+  344  sudo raspivid -o video.h264 -t 5000
+  345  omxplayer ./video.h264 
+  346  sudo raspivid -o video.h264 -t 20000
+  347  omxplayer ./video.h264 
+  348  fbi -a image.jpg 
+  349  sudo apt-get install fbi
+  350  fbi -a image.jpg 
+  351  fbi image.jpg -a
+  352  sudo fbi image.jpg -a
+  353  sudo fbi -a image.jpg
+  354  gpicview image.jpg 
+  355  gpac
+  356  sudo apt install -y gpac
+  357  MP4Box -add video.h264 video.mp4
+  358  ls /dev
+  359  omxplayer /dev/video
+  360  omxplayer /dev/video0
+  361  mplayer
+  362  sudo apt-get mplayer
+  363  sudo apt-get install mplayer
+  364  mplayer tv:///dev/video0
+  365  which mplayer
+  366  mplayer
+  367  man omxplayer 
+  368  cat /dev/video0 | omxplayer --live
+  369  man omxplayer 
+  370  mplayer tv://devide=/dev/video0
+  371  mpv tv://devide=/dev/video0
+  372  sudo apt-get install mpv
+  373  mpv
+  374  mpv /dev/video0
+  375  mpv tv:///dev/video0
+  376  mpv tv://dev/video0
+  377  mpv tv:// --tv-driver=v4l2 --tv-devide=/dev/video0
+  378  mpv tv:// --tv-driver=v412 --tv-devide=/dev/video0
+  379  sudo apt-get install libv4l-dev
+  380  mpv tv:// --tv-driver=v4l2 --tv-devide=/dev/video0]
+  381  mpv tv:// --tv-driver=v4l2 --tv-devide=/dev/video0
+  382  sudo apt-get install libopencv-dev
+  383  mpv tv:// --tv-driver=v4l2 --tv-devide=/dev/video0
+  384  modprobe vivi
+  385  mpv --version
+  386  mpv tv://
+  387  mpv tv:///dev/video0
+  388  mpv tv://dev/video0
+  389  sudo apt-get install ffmpeg
+  390  sudo modprobe bcm2835-v4l2
+  391  mpv tv:// --tv-driver=v4l2 --tv-devide=/dev/video0
+  392  mpv v4l2:///dev/video0
+  393  which vlc
+  394  vlc v4l2:///dev/video0
+  395  vlc v4l2://dev/video0
+  396  ls -lrt
+  397  ls -rtl /var/log/
+  398  ls -rtl
+  399  sudo vlc v4l2:///dev/video0
+  400  sudo usermod -aG /dev/video0 pi
+  401  sudo usermod -aG video pi
+  402  vlc v4l2:///dev/video0
+  403  ls -al /dev/video0
+  404  man chgrp
+  405  man addgrp
+  406  man grpadd
+  407  man groupadd
+  408  mplayer tv:// -tv driver=v4l2
+  409  history
+  410  history > video.txt
