@@ -1,0 +1,59 @@
+
+
+http://www.neko.ne.jp/~freewing/raspberry_pi/raspberry_pi_3_spi_nfc_rfid_rc522/
+https://pimylifeup.com/raspberry-pi-rfid-rc522/
+https://github.com/paulvha/rfid-rc522
+http://www.airspayce.com/mikem/bcm2835/
+
+https://github.com/pimylifeup/MFRC522-python/blob/master/mfrc522/MFRC522.py
+https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf
+
+
+Kernel build reference
+https://qiita.com/narista/items/eb8c1ddd7c3b1da3e571
+https://qiita.com/eggman/items/b0ce0e4fc89ce5e33a87
+
+https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf
+//MF522 commands for the CommandReg
+// 10.3 MFRC522 command overview
+#define PCD_IDLE              0x00              // no action, cancels current command execution
+#define PCD_AUTHENT           0x0E              // perform the MIFARE standard authentication as a reader
+#define PCD_RECEIVE           0x08              // activate the receiver circuits
+#define PCD_TRANSMIT          0x04              // transmits data from the FIFO buffer
+#define PCD_TRANSCEIVE        0x0C              // transmits data from the FIFO buffer & activate receive after transmission
+#define PCD_RESETPHASE        0x0F              // softreset command
+#define PCD_CALCCRC           0x03              // activates the CRC co-processor or perform a selftest
+
+http://m-health.u-aizu.ac.jp/~m5101102/SM130/basic_know.html
+
+//https://www.nxp.com/docs/en/data-sheet/MF1S70YYX_V1.pdf
+//9 Command overview
+//Mifare_One basic function library
+#define PICC_REQIDL           0x26      // REQA (idle card will respond)
+#define PICC_REQALL           0x52      // WUPA (All cards will respond IDLE and Halt)
+#define PICC_ANTICOLL1        0x93      // cascade level 1
+#define PICC_ANTICOLL2        0x95      // cascade level 2
+#define PICC_ANTICOLL3        0x97      // cascade level 3
+#define PICC_AUTHENT1A        0x60      // authentication with KeyA
+#define PICC_AUTHENT1B        0x61      // authentication with keyb
+#define PICC_READ             0x30              // read 16 byte datablock
+#define PICC_WRITE            0xA0              // write 16 byte datablock
+#define PICC_DECREMENT        0xC0      // decrement value block
+#define PICC_INCREMENT        0xC1      // increment value block
+#define PICC_RESTORE          0xC2      // move value block to internal data register
+#define PICC_TRANSFER         0xB0      // move internal data-reg to value block
+#define PICC_HALT             0x50      // + 00
+
+
+
+
+
+https://books.google.co.jp/books?id=GtqjDwAAQBAJ&pg=PA117&lpg=PA117&dq=PICC+READ+30&source=bl&ots=_HZg5sFsaa&sig=ACfU3U0cGnKaxDwEwxnmc31h0tf5B30-xg&hl=ja&sa=X&ved=2ahUKEwirv_2B_7LnAhWG-mEKHT0DBm8Q6AEwAHoECAsQAQ
+Raspberry Pi Magazine 2018/10
+
+
+
+
+
+
+

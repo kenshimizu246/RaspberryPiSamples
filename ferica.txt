@@ -1,0 +1,7 @@
+
+http://blog.netandfield.com/shar/2019/08/python3-felica.html
+
+https://nfcpy.readthedocs.io/en/latest/topics/get-started.html
+
+
+
