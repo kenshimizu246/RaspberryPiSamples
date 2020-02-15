@@ -16,11 +16,10 @@
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 
+// use BCM
+#define PIN_TRIG 12
+#define PIN_ECHO 16
 
-#define PIN_TRIG 21
-#define PIN_ECHO 22
-
-// 1sec
 #define TIMEOUT 1000
 
 void init()
@@ -53,16 +52,20 @@ float mesure()
 	usleep(0.00001 * 1000000); // microsecond... 1sec = 1 * 1000000
 	digitalWrite(PIN_TRIG, LOW);
 	prev = getTime();
+	printf("prev: %d \n", prev);
 	while(digitalRead(PIN_ECHO) == LOW){
 		signoff = getTime();
-		if((prev - signoff) > TIMEOUT){
+		if((signoff - prev) > TIMEOUT){
+			printf("soff: %d, diff:%d \n", signoff, (signoff - prev));
 			return -1;
 		}
 	}
 	prev = getTime();
+	printf("prev: %d \n", prev);
 	while(digitalRead(PIN_ECHO) == HIGH){
 		signon = getTime();
-		if((prev - signon) > TIMEOUT){
+		if((signon - prev) > TIMEOUT){
+			printf("sgon: %d, diff:%d \n", signon, (signon - prev));
 			return -1;
 		}
 	}
@@ -71,22 +74,29 @@ float mesure()
 
 int main(int argc, char *argv[])
 {
-	//printf("HC-SR04\n");
+	printf("HC-SR04\n");
+
+	init();
+
+	setup();
 
 	while(1){
-		double distance;
-		unsigned int signoff, signon;
-		signoff = getTime();
-		usleep(1 * 1000000); // microsecond... 1sec = 1 * 1000000
-		signon = getTime();
-		distance = ((signon - signoff) * 34) / 2;
-		printf("time:%f : %d : %d \n", distance, signon, signoff);
+		//double distance;
+		//unsigned int signoff, signon;
+		//signoff = getTime();
+		//usleep(1 * 1000000); // microsecond... 1sec = 1 * 1000000
+		//signon = getTime();
+		//distance = ((signon - signoff) * 34) / 2;
+		//printf("time:%f : %d : %d \n", distance, signon, signoff);
+		float distance = 0.0;
+		distance =  mesure();
+		printf("distance:%f\n", distance);
+		usleep(1*1000000);
 	}
 
 	digitalWrite(PIN_TRIG, LOW);
-	digitalWrite(PIN_ECHO, LOW);
 
-	//printf("DRV8835 done!\n");
+	printf("DRV8835 done!\n");
 }
 /*
 time:765511072

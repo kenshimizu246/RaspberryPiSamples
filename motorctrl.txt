@@ -1,0 +1,10 @@
+GPIO.21 INA1 
+GPIO.22 INA2
+GPIO.23 INB1
+GPIO.24 INB2
+
+righ forward -> 21 on, 22 off
+righ back -> 21 off, 22 on
+
+left forward -> 23 on, 24 off
+left back -> 23 off, 24 on
