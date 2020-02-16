@@ -1,0 +1,12 @@
+    1  i2cdetect 
+    2  i2cdetect -l
+    3  sudo apt-get update
+    4  sudo apt-get install i2c-tools
+    5  sudo vi /boot/config.txt 
+   38  sudo apt-get install build-essential cmake pkg-config
+   31  git clone https://github.com/mjbogusz/vl53l0x-linux.git
+   33  cd vl53l0x-linux/
+   35  cd build/
+   40  cmake ..
+   41  make
+   43  ./examples/single
