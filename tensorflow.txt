@@ -1,0 +1,17 @@
+$ sudo apt-get update
+$ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+
+$ wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+$ tar xf Python-3.6.0.tar.xz
+$ cd Python-3.6.0
+$ ./configure
+$ make
+$ sudo make altinstall
+
+
+sudo pip3.6 install tensorflow --ignore-installed --user
+
+https://www.tensorflow.org/install
+https://machinelearningmastery.com/tensorflow-tutorial-deep-learning-with-tf-keras/
+https://qiita.com/hidakanoko/items/5292ca79e3ff53867e40
+
