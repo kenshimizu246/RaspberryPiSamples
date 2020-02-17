@@ -1,0 +1,38 @@
+https://osoyoo.com/driver/QMC5883L-Datasheet-1.0.pdf
+
+See 18 page
+#0x1D -> 00 01 11 01 [OSR RNG ODR MODE]
+# OSR [00] 512
+# RNG [01] 8G
+# ORD [11] 200Hz
+# Mode [01] 200Hz
+OSR -> Over Sample Ratio
+RNG -> Full Scale
+ODR -> Output Data Rate
+Mode -> Mode Control
+
+$ sudo i2cset -y 1 0x0d 0x09 0x1D
+$ sudo i2cget -y 1 0x0d 0x00
+0xa7
+$ sudo i2cget -y 1 0x0d 0x01
+0x08
+$ sudo i2cget -y 1 0x0d 0x02
+0xd9
+$ sudo i2cget -y 1 0x0d 0x03
+0x0b
+$ sudo i2cget -y 1 0x0d 0x04
+0xd2
+$ sudo i2cget -y 1 0x0d 0x05
+0x03
+
+To understand i2cget above, read 9.2.1
+x axis, 0x08 0xa7 -> 0000 1000 1010 0111 -> 2048 + 0 + 0 + 0 + 128 + 0 + 32 + 0 + 0 + 4 + 2 + 1
+y axis, 0x0b 0xd9 -> 0000 1011 1101 1001 -> 2048 + 0 + 512 + 256 + 128 + 64 + 0 + 16 + 8 + 0 + 0 + 1
+z axis, 0x03 0xd2 -> 0000 0011 1101 0010 -> 512 + 256 + 128 + 64 + 0 + 16 + 0 + 0 + 2 + 0
+2048 1024 512 256 - 128 64 32 16 - 8 4 2 1
+
+http://qqtrading.com.my/3-axis-magnetic-field-sensor-module-gy-271-hmc5883l
+https://github.com/mechasolution/Mecha_QMC5883L
+https://github.com/e-Gizmo/QMC5883L-GY-271-Compass-module/blob/master/QMC5883L%20Datasheet%201.0%20.pdf
+
+
