@@ -10,3 +10,7 @@
    40  cmake ..
    41  make
    43  ./examples/single
+
+hint;
+pi@raspberrypi:~/project/RaspberryPiSamples/src $ g++ VL53L0X.cpp ../../vl53l0x-linux/build/examples/CMakeFiles/single.dir/__/VL53L0X.cpp.o  ../../vl53l0x-linux/build/examples/CMakeFiles/single.dir/__/I2Cdev.cpp.o 
+

@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     int status;
     do{
       status = wiringPiI2CReadReg8(fd, 0x06);
-                  printf("--- %d\n", status);
+      printf("--- %d\n", status);
     } while((status & 0x01) != 1);
     check_status(fd);
     int x = wiringPiI2CReadReg8(fd, 0x00) | (wiringPiI2CReadReg8(fd, 0x01) << 8);

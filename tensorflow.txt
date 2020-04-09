@@ -9,6 +9,10 @@ $ make
 $ sudo make altinstall
 
 
+sudo pip3.6 install --upgrade pip
+
+sudo apt-get install libhdf5-dev
+
 sudo pip3.6 install tensorflow --ignore-installed --user
 
 https://www.tensorflow.org/install
