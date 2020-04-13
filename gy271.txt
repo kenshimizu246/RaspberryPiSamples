@@ -11,6 +11,10 @@ RNG -> Full Scale
 ODR -> Output Data Rate
 Mode -> Mode Control
 
+# soft reset
+$ sudo i2cset -y 1 0x0d 0x0A 0x80
+
+
 $ sudo i2cset -y 1 0x0d 0x09 0x1D
 $ sudo i2cget -y 1 0x0d 0x00
 0xa7

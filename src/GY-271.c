@@ -46,28 +46,28 @@ int check_status(int fd){
 
   // DRDY: “0”: no new data, “1”: new data is ready
   if((status & 0x01) > 0){
-    printf("new data is ready!\n");
+    //printf("new data is ready!\n");
+    return 0;
   } else {
     printf("no new data!\n");
-    //return -1;
+    return -1;
   }
 
   // OVL: “0”: normal, “1”: data overflow
   if((status & 0x02) > 0){
     printf("data overflow!\n");
-    //return -2;
+    return -2;
   } else {
-    printf("normal!\n");
+    //printf("normal!\n");
   }
 
   // DOR: “0”: normal, “1”: data skipped for reading
   if((status & 0x04) > 0){
     printf("data skipped for reading!\n");
-    //return -3;
+    return -3;
   } else {
-    printf("normal!\n");
+    //printf("normal!\n");
   }
-
   return 0;
 }
 
@@ -93,6 +93,12 @@ int main(int argc, char *argv[])
     return ret;
   }
 
+  ret = wiringPiI2CWriteReg8(fd, 0x0a, 0x80);
+  if(ret < 0){
+    printf("Error Reset %d\n", ret);
+    return ret;
+  }
+
   int ctrl = MODE_CONTINUOUS | ODR_200HZ | RNG_8G | OSR_512;
   printf("ctrl %x\n", ctrl);
   ret = wiringPiI2CWriteReg8(fd, 0x09, ctrl);
@@ -101,45 +107,62 @@ int main(int argc, char *argv[])
     return ret;
   }
 
-  unsigned int xlow, xhigh, ylow, yhigh, zlow, zhigh;
-  xlow = ylow = zlow = 0xffff;
-  xhigh = yhigh = zhigh = 0;
+  int lowX, highX, lowY, highY, lowZ, highZ;
+  lowX = lowY = lowZ = 0xffff;
+  highX = highY = highZ = 0;
 
   while(1){
-    printf("-----------------------------------------\n");
+    //printf("-----------------------------------------\n");
 
     int status;
     do{
       status = wiringPiI2CReadReg8(fd, 0x06);
-      printf("--- %d\n", status);
+      //printf("%d ", status);
     } while((status & 0x01) != 1);
+    //printf("\n");
     check_status(fd);
-    int x = wiringPiI2CReadReg8(fd, 0x00) | (wiringPiI2CReadReg8(fd, 0x01) << 8);
-    int y = wiringPiI2CReadReg8(fd, 0x02) | (wiringPiI2CReadReg8(fd, 0x03) << 8);
-    int z = wiringPiI2CReadReg8(fd, 0x04) | (wiringPiI2CReadReg8(fd, 0x05) << 8);
-    printf("xyz: %d %d %d\n", x, y, z);
-    if(x < xlow) xlow = x;
-    if(x > xhigh) xhigh = x;
-    if(y < ylow) ylow = y;
-    if(y > yhigh) yhigh = y;
-    if(z < zlow) zlow = z;
-    if(z > zhigh) zhigh = z;
-    if(xlow == xhigh || ylow == yhigh){
-            printf("Not enough data is available!\n");
+    //int x = wiringPiI2CReadReg8(fd, 0x00) | (wiringPiI2CReadReg8(fd, 0x01) << 8);
+    //int y = wiringPiI2CReadReg8(fd, 0x02) | (wiringPiI2CReadReg8(fd, 0x03) << 8);
+    //int z = wiringPiI2CReadReg8(fd, 0x04) | (wiringPiI2CReadReg8(fd, 0x05) << 8);
+    int lsbX = wiringPiI2CReadReg8(fd, 0x00);
+    int msbX = wiringPiI2CReadReg8(fd, 0x01);
+    int lsbY = wiringPiI2CReadReg8(fd, 0x02);
+    int msbY = wiringPiI2CReadReg8(fd, 0x03);
+    int lsbZ = wiringPiI2CReadReg8(fd, 0x04);
+    int msbZ = wiringPiI2CReadReg8(fd, 0x05);
+    int x = lsbX | (msbX << 8);
+    int y = lsbY | (msbY << 8);
+    int z = lsbZ | (msbZ << 8);
+    printf("xyz: %6d:%4x, %6d:%4x, %6d:%4x ", x, x, y, y, z, z);
+    if(x > 0 && x < lowX) lowX = x;
+    if(x > highX) highX = x;
+    if(y > 0 && y < lowY) lowY = y;
+    if(y > highY) highY = y;
+    if(z > 0 && z < lowZ) lowZ = z;
+    if(z > highZ) highZ = z;
+    if(lowX == highX || lowY == highY){
+      printf("Not enough data is available!\n");
       continue;
     }
-    x -= (xhigh + xlow)/2;
-    y -= (yhigh + ylow)/2;
-    z -= (zhigh + zlow)/2;
+    printf("; high: %d, %d, %d ", highX, highY, highZ);
+    printf("; low: %d, %d, %d ", lowX, lowY, lowZ);
 
-    float fx = (float)x/(xhigh - xlow);
-    float fy = (float)y/(yhigh - ylow);
-    float fz = (float)z/(zhigh - zlow);
+    int ofsX = (highX + lowX)/2;
+    int ofsY = (highY + lowY)/2;
+    int ofsZ = (highZ + lowZ)/2;
 
-    int heading = 180.0 * atan2(fy, fx)/3.1415926535;
+    x -= ofsX;
+    y -= ofsY;
+    z -= ofsZ;
+
+    float fx = (float)x/(highX - lowX);
+    float fy = (float)y/(highY - lowY);
+    float fz = (float)z/(highZ - lowZ);
+
+    float heading = atan2(fy, fx) * 180.0 /3.1415926535;
     if(heading <= 0){heading += 360;}
 
-    printf(" -> %d\n", heading);
+    printf("; %-3.8f\n", heading);
     //usleep(1000000); //1sec
   }
 
