@@ -40,3 +40,15 @@ https://github.com/mechasolution/Mecha_QMC5883L
 https://github.com/e-Gizmo/QMC5883L-GY-271-Compass-module/blob/master/QMC5883L%20Datasheet%201.0%20.pdf
 
 
+
+sudo i2cset -y 1 0x0d 0x0A 0x80
+sudo i2cset -y 1 0x0d 0x09 0x1D
+sudo i2cget -y 1 0x0d 0x00
+sudo i2cget -y 1 0x0d 0x01
+sudo i2cget -y 1 0x0d 0x02
+sudo i2cget -y 1 0x0d 0x03
+sudo i2cget -y 1 0x0d 0x04
+sudo i2cget -y 1 0x0d 0x05
+
+
+
